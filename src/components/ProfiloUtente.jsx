@@ -108,36 +108,46 @@ const ProfiloUtente = () => {
 
   const handleChangeFoto = async () => {
     if (!foto) {
-      setError("Nessuna foto selezionata.");
-      return;
+        setError("Nessuna foto selezionata.");
+        return;
     }
 
     try {
-      setLoading(true);
-      const formData = new FormData();
-      formData.append("foto", foto);
+        setLoading(true);
+        const formData = new FormData();
+        formData.append("foto", foto);
 
-      const response = await fetch("http://localhost:3001/utente/me/avatar", {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
+        // Prima richiesta: aggiorna la foto profilo
+        const response = await fetch("http://localhost:3001/utente/me/avatar", {
+            method: "PATCH",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+        });
 
-      if (!response.ok) throw new Error("Errore durante la modifica della foto profilo.");
+        if (!response.ok) throw new Error("Errore durante la modifica della foto profilo.");
 
-      const updatedUtente = await response.json();
-      setUtente(updatedUtente);
-      setSuccess(true);
-      setModificaFoto(false);
-      setFoto(null);
+        // Seconda richiesta: recupera il profilo aggiornato
+        const profileResponse = await fetch("http://localhost:3001/utente/me", {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!profileResponse.ok) throw new Error("Errore nel caricamento del profilo aggiornato.");
+
+        const updatedProfile = await profileResponse.json();
+        setUtente(updatedProfile); // Aggiorna lo stato con il profilo aggiornato
+
+        setSuccess(true);
+        setModificaFoto(false);
+        setFoto(null);
     } catch (err) {
-      setError(err.message);
+        setError(err.message);
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   if (loading) return <Spinner animation="border" />;
 
@@ -149,7 +159,7 @@ const ProfiloUtente = () => {
 
       <div className="foto-profilo">
         <img
-          src={utente.fotoProfilo || "https://via.placeholder.com/150"}
+          src={utente.avatarUrl || "https://via.placeholder.com/150"}
           alt="Foto Profilo"
           className="mb-3"
           style={{ width: "150px", height: "150px", borderRadius: "50%" }}

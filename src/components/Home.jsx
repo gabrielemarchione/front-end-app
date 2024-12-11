@@ -56,7 +56,7 @@ const Home = () => {
             });
 
             if (!response.ok) {
-                throw new Error("Errore durante la prenotazione");
+                throw new Error("Posti terminati");
             }
 
             const updatedEventi = eventi.map((evento) =>
@@ -79,7 +79,7 @@ const Home = () => {
     const handleShowPrenotazione = (evento) => {
         if (!token) {
             alert("Devi essere loggato per effettuare una prenotazione.");
-            navigate("/login"); // Redireziona al login
+            navigate("/login"); 
             return;
         }
         setEventoSelezionato(evento);
