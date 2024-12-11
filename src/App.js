@@ -5,8 +5,11 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import OurNavbar from './components/OurNavbar';
 import Login from './components/Login';
-
-
+import FormCreazioneEvento from "./components/FormCreazioneEvento"
+import MyEvents from './components/MyEvents';
+import ProfiloUtente from './components/ProfiloUtente';
+import  LeMiePrenotazioni from './components/LeMiePrenotazioni'
+import RegistrazioneNuovoUtente from './components/RegistrazioneNuovoUtente';
 
 function App() {
   return (
@@ -16,6 +19,11 @@ function App() {
       <Routes>
         <Route path='/*' element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path ="/evento" element= {<FormCreazioneEvento />} />
+        <Route path="/myevents" element= {<MyEvents />} />
+        <Route path = "/profilo" element= {<ProfiloUtente/>} />
+        <Route path = "/mybookings" element= {<LeMiePrenotazioni/>}  />
+        <Route path = "/signup" element= {<RegistrazioneNuovoUtente/>}  />
       </Routes>
       </div>
     </BrowserRouter>

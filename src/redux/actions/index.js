@@ -1,11 +1,19 @@
 export const SET_TOKEN = 'SET_TOKEN'
 export const ADD_RUOLO = 'ADD_RUOLO'
 export const POPOLA_EVENTI = 'POPOLA_EVENTI'
-export const SET_USER_ROLE = 'SET_USER_ROLE'
+export const UPDATE_ROLES = 'UPDATE_ROLES'
+export const CLEAR_TOKEN = "CLEAR_TOKEN";
+export const DELETE_EVENT = "DELETE_EVENT";
+export const UPDATE_EVENT = "UPDATE_EVENT";
 
-export const SetTokenAction = (token) => ({
-    type: "SET_TOKEN",
-    payload: token ,
+
+export const setToken = (token) => ({
+  type: SET_TOKEN,
+  payload: token, 
+});
+
+export const clearToken = () => ({
+  type: CLEAR_TOKEN,
 });
 
 
@@ -19,12 +27,22 @@ export const aggiungiEvento = (evento) => ({
     payload: evento,
 });
 
-export const AddRuoloAction = (ruolo) => {
-    return {
-        type: ADD_RUOLO,
-        payload: ruolo
-    }
-}
+export const UpdateRolesAction = (ruoli) => ({
+    type: "UPDATE_ROLES",
+    payload: { ruoli },
+});
+
+
+
+export const updateEventAction = (updatedEvent) => ({
+  type: UPDATE_EVENT,
+  payload: updatedEvent,
+});
+
+export const deleteEventAction = (id) => ({
+  type: DELETE_EVENT,
+  payload: id,
+});
 
 ;
 
