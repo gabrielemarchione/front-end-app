@@ -34,7 +34,7 @@ const MyEvents = () => {
 
       const data = await response.json();
       setEvents(data);
-      dispatch(popolaEventi(data));
+      dispatch(popolaEventi(data)); // 
     } catch (err) {
       setError(err.message);
     } finally {
@@ -111,7 +111,7 @@ const MyEvents = () => {
 
   return (
     <div className="my-events">
-      <h1 className="mb-4">I Miei Eventi</h1>
+      <h1 className="mb-4">Eventi</h1>
       {loading && (
         <div className="text-center">
           <Spinner animation="border" />

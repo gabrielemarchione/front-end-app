@@ -35,21 +35,21 @@ const OurNavbar = () => {
 
                     <Nav className="me-auto">
 
-                        {ruoli.some((ruolo) => ["ADMIN", "ORGANIZZATORE"].includes(ruolo)) && (
+                        {ruoli.some((ruolo) => ["ORGANIZZATORE"].includes(ruolo)) && (
                             <Link to="/myevents" className="nav-link text-white">I Miei Eventi</Link>
                         )}
                     </Nav>
 
                     <Nav className="me-auto">
 
-                        {ruoli.some((ruolo) => ["ADMIN", "ORGANIZZATORE", "USER"].includes(ruolo)) && (
+                        {ruoli.some((ruolo) => [ "ORGANIZZATORE", "USER"].includes(ruolo)) && (
                             <Link to="/mybookings" className="nav-link text-white">Prenotazioni</Link>
                         )}
                     </Nav>
                     <Nav className="me-auto">
 
                         {ruoli.some((ruolo) => ["ADMIN"].includes(ruolo)) && (
-                            <Link to="/myEvents" className="nav-link text-white">Pannello Admin</Link>
+                            <Link to="/admin" className="nav-link text-white">Pannello Admin</Link>
                         )}
                     </Nav>
                     <Nav>

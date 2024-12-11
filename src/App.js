@@ -10,6 +10,7 @@ import MyEvents from './components/MyEvents';
 import ProfiloUtente from './components/ProfiloUtente';
 import  LeMiePrenotazioni from './components/LeMiePrenotazioni'
 import RegistrazioneNuovoUtente from './components/RegistrazioneNuovoUtente';
+import PannelloAdmin from './components/PannelloAdmin'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path = "/profilo" element= {<ProfiloUtente/>} />
         <Route path = "/mybookings" element= {<LeMiePrenotazioni/>}  />
         <Route path = "/signup" element= {<RegistrazioneNuovoUtente/>}  />
+        <Route path = "/admin" element= {<PannelloAdmin/>}  />
       </Routes>
       </div>
     </BrowserRouter>
