@@ -12,7 +12,7 @@ const FormCreazioneEvento = () => {
   const [postiMassimi, setPostiMassimi] = useState("");
   const [categoriaEvento, setCategoriaEvento] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
-  const [errors, setErrors] = useState({}); // Stato per la gestione degli errori
+  const [errors, setErrors] = useState({}); 
   const [isOnline, setIsOnline] = useState(false);
 
 
@@ -209,9 +209,9 @@ const FormCreazioneEvento = () => {
                     onChange={(e) => {
                       setIsOnline(e.target.checked);
                       if (e.target.checked) {
-                        setLuogo("Online"); // Imposta il luogo come "Online" se selezionato
+                        setLuogo("Online"); 
                       } else {
-                        setLuogo(""); // Ripristina il luogo se deselezionato
+                        setLuogo(""); 
                       }
                     }}
                   />

@@ -33,9 +33,9 @@ const PrenotazioniAdmin = () => {
         fetchPrenotazioni();
     }, []);
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (prenotazioneId) => {
         try {
-            const response = await fetch(`http://localhost:3001/prenotazioni/${id}`, {
+            const response = await fetch(`http://localhost:3001/prenotazioni/lemieprenotazioni/${prenotazioneId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ const PrenotazioniAdmin = () => {
 
             if (!response.ok) throw new Error("Errore durante l'eliminazione della prenotazione.");
 
-            setPrenotazioni(prenotazioni.filter((p) => p.id !== id));
+            setPrenotazioni(prenotazioni.filter((p) => p.prenotazioneId !== prenotazioneId));
         } catch (err) {
             alert(err.message);
         }
@@ -55,6 +55,7 @@ const PrenotazioniAdmin = () => {
 
     return (
         <div>
+            <div></div>
             <h2>Gestione Prenotazioni</h2>
             <Table striped bordered hover>
                 <thead>
@@ -77,7 +78,7 @@ const PrenotazioniAdmin = () => {
                             <td>
                                 <Button
                                     variant="danger"
-                                    onClick={() => handleDelete(prenotazione.id)}
+                                    onClick={() => handleDelete(prenotazione.prenotazioneId)}
                                 >
                                     Elimina
                                 </Button>

@@ -91,9 +91,7 @@ const ProfiloUtente = () => {
       });
 
       if (!response.ok) {
-        const errorDetails = await response.json();
-        console.error("Errore dal server:", errorDetails); // Debug dettagliato
-        throw new Error(errorDetails.message || "Errore durante la modifica della password.");
+        throw new Error("Errore durante la modifica della password.");
       }
 
       setSuccess(true);

@@ -10,10 +10,11 @@ const MyEvents = () => {
   const [selectedEvent, setSelectedEvent] = useState(null); // Per il form di modifica
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [eventToDelete, setEventToDelete] = useState(null);
+  
 
   const token = useSelector((state) => state.token.token);
-  const roles = useSelector((state) => state.token.ruoli);
-  const isAdmin = roles.includes("ADMIN");
+  const ruoli = useSelector((state) => state.token.ruoli);
+  const isAdmin = ruoli.includes("ADMIN");
 
   const dispatch = useDispatch();
 
@@ -57,7 +58,7 @@ const MyEvents = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Errore durante la cancellazione dell'evento");
+        throw new Error("Sono presenti delle prenotazioni, non puoi cancellare l'evento!");
       }
 
       setEvents((prevEvents) => prevEvents.filter((event) => event.eventoId !== eventoId));
@@ -109,8 +110,11 @@ const MyEvents = () => {
     setEventToDelete(null);
   };
 
+ 
+
   return (
     <div className="my-events">
+
       <h1 className="mb-4">Eventi</h1>
       {loading && (
         <div className="text-center">
@@ -127,6 +131,7 @@ const MyEvents = () => {
             <tr>
               <th>#</th>
               <th>Titolo</th>
+              <th>Descrizione</th>
               <th>Luogo</th>
               <th>Data</th>
               <th>Posti Disponibili</th>
@@ -136,13 +141,14 @@ const MyEvents = () => {
           </thead>
           <tbody>
             {events.map((event, index) => (
-              <tr key={event.id|| index}>
+              <tr key={event.eventoId}>
                 <td>{index + 1}</td>
                 <td>{event.titolo}</td>
+                <td>{event.descrizione}</td>
                 <td>{event.luogo}</td>
                 <td>{event.data}</td>
                 <td>{event.postiDisponibili}</td>
-                {isAdmin && <td>{event.organizzatore?.nome || "Non disponibile"}</td>}
+                {isAdmin && <td>{event.organizzatore? `${event.organizzatore.nome} ${event.organizzatore.cognome}` : "Non disponibile"}  </td> }
                 <td>
                   <Button
                     variant="warning"

@@ -79,7 +79,7 @@ const Home = () => {
     const handleShowPrenotazione = (evento) => {
         if (!token) {
             alert("Devi essere loggato per effettuare una prenotazione.");
-            navigate("/login"); 
+            navigate("/login"); // Redireziona al login
             return;
         }
         setEventoSelezionato(evento);
