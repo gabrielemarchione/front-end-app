@@ -115,7 +115,7 @@ const ProfiloUtente = () => {
         const formData = new FormData();
         formData.append("foto", foto);
 
-        // Prima richiesta: aggiorna la foto profilo
+        // aggiorna la foto profilo
         const response = await fetch("http://localhost:3001/utente/me/avatar", {
             method: "PATCH",
             headers: {
@@ -126,7 +126,7 @@ const ProfiloUtente = () => {
 
         if (!response.ok) throw new Error("Errore durante la modifica della foto profilo.");
 
-        // Seconda richiesta: recupera il profilo aggiornato
+        //recupera il profilo aggiornato
         const profileResponse = await fetch("http://localhost:3001/utente/me", {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
@@ -135,7 +135,7 @@ const ProfiloUtente = () => {
         if (!profileResponse.ok) throw new Error("Errore nel caricamento del profilo aggiornato.");
 
         const updatedProfile = await profileResponse.json();
-        setUtente(updatedProfile); // Aggiorna lo stato con il profilo aggiornato
+        setUtente(updatedProfile); // profilo aggiornato
 
         setSuccess(true);
         setModificaFoto(false);
@@ -150,12 +150,13 @@ const ProfiloUtente = () => {
   if (loading) return <Spinner animation="border" />;
 
   return (
-    <div className="profilo-utente">
+    
+    <div className="foto-profilo-container container d-flex flex-column align-items-center py-5">
       <h1>Profilo Utente</h1>
       {error && <Alert variant="danger">{error}</Alert>}
       {success && <Alert variant="success">Operazione completata con successo!</Alert>}
 
-      <div className="foto-profilo">
+      <div className="text-center mb-4">
         <img
           src={utente.avatarUrl || "https://via.placeholder.com/150"}
           alt="Foto Profilo"

@@ -17,6 +17,7 @@ const tokenReducer = (state = initialState, action) => {
           token, // salva il token
           ruoli: decoded.ruoli || [], // salva i ruoli dal token decodificato
           nome: decoded.nome || "", //savla il nome utente
+          sub: decoded.sub, // sarebbe uuid
         };
       } catch (error) {
         console.error("Errore nella decodifica del token", error);

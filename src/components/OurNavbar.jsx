@@ -15,7 +15,7 @@ const OurNavbar = () => {
     };
 
     return (
-        <Navbar expand="lg" className="bg-black mb-3">
+        <Navbar expand="lg" className="navbar bg-3">
             <Container>
                 <Link className="text-white navbar-brand" to="/home">Appalermo</Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

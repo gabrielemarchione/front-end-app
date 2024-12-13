@@ -5,10 +5,7 @@ const initialState = {
   const eventiReducer = (state = initialState, action) => {
     switch (action.type) {
       case "POPOLA_EVENTI":
-        return {
-          ...state,
-          items: action.payload,
-        };
+        return { ...state, items: [...action.payload] }; // Nuovo array
       case "AGGIUNGI_EVENTO":
         return {
           ...state,

@@ -12,11 +12,11 @@ const FormCreazioneEvento = () => {
   const [postiMassimi, setPostiMassimi] = useState("");
   const [categoriaEvento, setCategoriaEvento] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
-  const [errors, setErrors] = useState({}); 
+  const [errors, setErrors] = useState({});
   const [isOnline, setIsOnline] = useState(false);
+  const [isGratis, setGratis] = useState(false);
+  const [randomImage, setRandomImage] = useState(""); // Stato per l'immagine casuale
 
-
-  
   const token = useSelector((state) => state.token.token);
   const ruoliUtente = useSelector((state) => state.token.ruoli);
   const navigate = useNavigate();
@@ -24,56 +24,32 @@ const FormCreazioneEvento = () => {
   if (!ruoliUtente.includes("ADMIN") && !ruoliUtente.includes("ORGANIZZATORE")) {
     return <p>Non sei autorizzato a creare un evento.</p>;
   }
+
   //enum per form evento
   const categorieDisponibili = [
-    "LAN_PARTY",
-    "LECTIO_MAGISTRALIS",
-    "CORSO",
-    "RACCOLTA_FONDI",
-    "MOSTRA_VIDEOGIOCHI",
-    "BASKET",
-    "WORKSHOP",
-    "WEBINAR",
-    "RITIRO_SPIRITUALE",
-    "MOSTRA_ARTE",
-    "HACKATHON",
-    "PRESENTAZIONE_LIBRO",
-    "FIERE_COMMERCIALI",
-    "CERIMONIA_RELGIOSA",
-    "PARTITA_CALCIO",
-    "DANZA",
-    "SPETTACOLO_BAMBINI",
-    "FESTIVAL_CIBO",
-    "TENNIS",
-    "MUSICA",
-    "TEATRO",
-    "EVENTO_COMUNITA",
-    "DEGUSTAZIONE_VINI",
-    "SAGRA",
-    "SPORT_ACQUATICI",
-    "PALLAVOLO",
-    "ANNIVERSARIO",
-    "CINEMA",
-    "FESTA_FAMIGLIA",
-    "CORSA",
-    "COMPLEANNO",
-    "SEMINARIO",
-    "MATRIMONIO",
-    "FESTIVAL_CULTURALE",
-    "LABORATORIO_BAMBINI",
-    "ESCURSIONE",
-    "FESTA_PRIVATA",
-    "CAREER_FAIR",
-    "CONFERENZA_TECNOLOGIA",
-    "GALA",
-    "CICLISMO",
-    "CONFERENZA",
-    "CORSO_CUCINA",
-    "PELLEGRINAGGIO",
-    "EVENTO_SOLIDARIETA",
-    "ALTRO",
-    "MERCATO_LOCALE"
+    "Concerto",
+    "Conferenza",
+    "Corso",
+    "EventoAziendale",
+    "EventoBenefico",
+    "EventoComunitario",
+    "FestaCompleanno",
+    "FestaPrivata",
+    "FestivalCibo",
+    "FestivalMusica",
+    "Hackathon",
+    "MostraArte",
+    "MostraFotografia",
+    "PresentazioneLibro",
+    "SportBasket",
+    "SportCalcio",
+    "SportTennis",
+    "Teatro",
+    "Webinar",
+    "Workshop"
   ];
+  
+  //validazione form
   const validate = () => {
     const newErrors = {};
 
@@ -116,6 +92,31 @@ const FormCreazioneEvento = () => {
     // Ritorna true se non ci sono errori
     return Object.keys(newErrors).length === 0;
   };
+  const handleGratis = (e) => {
+    setGratis(e.target.checked);
+    if (e.target.checked) {
+      setCosto(0); 
+    }
+  };
+  //generazione img random in base all'enum 
+  const fetchRandomImage = async () => {
+    try {
+      console.log("Categoria evento selezionata:", categoriaEvento); 
+      console.log("Tentativo di fetch per l'immagine casuale...");
+      const response = await fetch(`http://localhost:3001/api/random-event-image?categoriaEvento=${categoriaEvento}`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+      if (!response.ok) throw new Error(`Errore nel fetch: ${response.status}`);
+
+      const imageUrl = await response.text();
+      console.log("URL immagine ricevuto:", imageUrl);
+      setRandomImage(imageUrl);
+    } catch (error) {
+      console.error("Errore durante il fetch dell'immagine:", error.message);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -131,9 +132,11 @@ const FormCreazioneEvento = () => {
       luogo,
       costo: parseFloat(costo),
       postiMassimi: parseInt(postiMassimi),
+      postiDisponibili: parseFloat(postiMassimi),
       categoriaEvento,
+      immagine: randomImage || null, 
     };
-
+    console.log("Payload inviato:", nuovoEvento); // Log per debug
     try {
       const response = await fetch("http://localhost:3001/evento/crea", {
         method: "POST",
@@ -205,13 +208,13 @@ const FormCreazioneEvento = () => {
                   <Form.Check
                     type="checkbox"
                     label="È online?"
-                    checked={isOnline} // Stato per la checkbox
+                    checked={isOnline} 
                     onChange={(e) => {
                       setIsOnline(e.target.checked);
                       if (e.target.checked) {
-                        setLuogo("Online"); 
+                        setLuogo("Online");
                       } else {
-                        setLuogo(""); 
+                        setLuogo("");
                       }
                     }}
                   />
@@ -225,9 +228,17 @@ const FormCreazioneEvento = () => {
                     value={luogo}
                     onChange={(e) => setLuogo(e.target.value)}
                     isInvalid={!!errors.luogo}
-                    disabled={isOnline} // Disabilita il campo se l'evento è online
+                    disabled={isOnline} 
                   />
                   <Form.Control.Feedback type="invalid">{errors.luogo}</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group controlId="isFree" className="mb-3">
+                  <Form.Check
+                    type="checkbox"
+                    label="Gratis"
+                    checked={isGratis}
+                    onChange={handleGratis}
+                  />
                 </Form.Group>
 
 
@@ -236,9 +247,10 @@ const FormCreazioneEvento = () => {
                   <Form.Control
                     type="number"
                     placeholder="Inserisci il costo"
-                    value={costo}
+                    value = { isGratis? 0: costo } 
                     onChange={(e) => setCosto(e.target.value)}
                     isInvalid={!!errors.costo}
+                    disabled={isGratis} 
                   />
                   <Form.Control.Feedback type="invalid">{errors.costo}</Form.Control.Feedback>
                 </Form.Group>
@@ -271,7 +283,19 @@ const FormCreazioneEvento = () => {
                   </Form.Control>
                   <Form.Control.Feedback type="invalid">{errors.categoriaEvento}</Form.Control.Feedback>
                 </Form.Group>
-
+                <Form.Group controlId="randomImage" className="mb-3">
+                  <Form.Label>Immagine Evento</Form.Label>
+                  <div className="mb-3">
+                    {randomImage ? (
+                      <img src={randomImage} alt="Immagine Evento" className="img-fluid" />
+                    ) : (
+                      <p>Nessuna immagine selezionata</p>
+                    )}
+                  </div>
+                  <Button variant="secondary" onClick={fetchRandomImage} className="mb-3">
+                    Genera Immagine Casuale
+                  </Button>
+                </Form.Group>
                 <Form.Group controlId="termsAccepted" className="mb-3">
                   <Form.Check
                     type="checkbox"

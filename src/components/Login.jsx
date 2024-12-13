@@ -31,12 +31,11 @@ const Login = () => {
             const data = await response.json();
             const token = data.token;
 
-            // Salva il token nel Redux Store e nel localStorage
+            
             dispatch(setToken(token));
-            localStorage.setItem("token", token);
 
             alert("Login avvenuto con successo!");
-            navigate("/home"); // Reindirizza alla home
+            navigate("/home"); 
         } catch (error) {
             setError(error.message);
         }

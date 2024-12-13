@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button, Spinner, Alert } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { popolaEventi } from "../redux/actions/index";
 
 const PrenotazioniAdmin = () => {
     const [prenotazioni, setPrenotazioni] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const token = useSelector((state) => state.token.token);
-    
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchPrenotazioni = async () => {
@@ -15,14 +16,14 @@ const PrenotazioniAdmin = () => {
                 const response = await fetch("http://localhost:3001/prenotazioni", {
                     method: "GET",
                     headers: {
-                      Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${token}`,
                     },
-                  });
+                });
 
                 if (!response.ok) throw new Error("Errore nel caricamento delle prenotazioni.");
 
                 const data = await response.json();
-                setPrenotazioni(data.content || data); 
+                setPrenotazioni(data.content || data);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -31,7 +32,7 @@ const PrenotazioniAdmin = () => {
         };
 
         fetchPrenotazioni();
-    }, []);
+    }, [token]);
 
     const handleDelete = async (prenotazioneId) => {
         try {
@@ -39,12 +40,27 @@ const PrenotazioniAdmin = () => {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
-                  },
-                });
+                },
+            });
 
             if (!response.ok) throw new Error("Errore durante l'eliminazione della prenotazione.");
 
             setPrenotazioni(prenotazioni.filter((p) => p.prenotazioneId !== prenotazioneId));
+
+            // ricarica gli eventi dal backend per aggiornare i posti disponibili
+            const fetchResponse = await fetch("http://localhost:3001/evento", {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            });
+
+            if (!fetchResponse.ok) {
+                throw new Error("Errore nel recupero degli eventi");
+            }
+
+            const data = await fetchResponse.json();
+            dispatch(popolaEventi(data.content));
+
+            alert("Prenotazione cancellata con successo!");
         } catch (err) {
             alert(err.message);
         }
@@ -55,7 +71,6 @@ const PrenotazioniAdmin = () => {
 
     return (
         <div>
-            <div></div>
             <h2>Gestione Prenotazioni</h2>
             <Table striped bordered hover>
                 <thead>
@@ -73,7 +88,6 @@ const PrenotazioniAdmin = () => {
                             <td>{prenotazione.prenotazioneId}</td>
                             <td>{prenotazione.evento?.titolo || "Non disponibile"}</td>
                             <td>{prenotazione.utente ? `${prenotazione.utente.nome} ${prenotazione.utente.cognome}` : "Anonimo"}</td>
-
                             <td>{prenotazione.postiPrenotati}</td>
                             <td>
                                 <Button

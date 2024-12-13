@@ -11,6 +11,7 @@ import ProfiloUtente from './components/ProfiloUtente';
 import  LeMiePrenotazioni from './components/LeMiePrenotazioni'
 import RegistrazioneNuovoUtente from './components/RegistrazioneNuovoUtente';
 import PannelloAdmin from './components/PannelloAdmin'
+import MyFooter from './components/MyFooter';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path = "/signup" element= {<RegistrazioneNuovoUtente/>}  />
         <Route path = "/admin" element= {<PannelloAdmin/>}  />
       </Routes>
+      <MyFooter/>
       </div>
     </BrowserRouter>
 

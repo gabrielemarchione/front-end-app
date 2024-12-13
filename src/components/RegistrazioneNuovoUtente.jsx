@@ -39,7 +39,7 @@ const Registrazione = () => {
             }
 
             alert("Registrazione completata con successo!");
-            navigate("/login"); // Reindirizza al login dopo la registrazione
+            navigate("/login"); 
         } catch (error) {
             alert(error.message);
         }

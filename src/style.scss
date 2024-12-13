@@ -1,0 +1,289 @@
+// Palette colori
+:root {
+    --text: #ffecf4;
+    --background: #101010;
+    --primary: #ff6cbd;
+    --secondary: #ffc6e0;
+    --accent: #ff6cbd;
+    --gold: #ffd700;
+}
+
+// Reset generali
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Corpo
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+
+//navbar
+.navbar {
+    background: #2b2b2b; // Sfondo rosa
+    color: var(--text); // Testo chiaro
+
+    .navbar-brand,
+    .nav-link {
+        color: var(--text); // Colore del testo per i link
+        transition: color 0.3s;
+
+        &:hover {
+            color: var(--secondary); // Cambia colore al passaggio del mouse
+        }
+    }
+
+    .navbar-toggler {
+        border-color: var(--secondary);
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 5px var(--accent);
+        }
+    }
+}
+
+
+
+// Hero Section
+.hero-section {
+    background: var(--primary);
+    color: var(--background);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+}
+
+// Carousel
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+
+
+    .carousel-item {
+        text-align: center; // Centra il contenuto orizzontalmente
+        height: 400px; // Altezza fissa per tutte le slide
+        align-items: center;
+    }
+
+    .carousel-caption {
+        position: absolute;
+        bottom: 20px;
+        background: rgba(0, 0, 0, 0.7); // Sfondo trasparente scuro
+        color: var(--text);
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .carousel-item img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // Adatta senza distorsioni
+        object-position: bottom;
+        border-bottom-left-radius: 20px; // Applica la stessa regola all'immagine per evitare tagli
+        border-bottom-right-radius: 20px;
+    }
+    .btn-secondary {
+        background: var(--secondary);
+        border: none;
+
+        &:hover {
+            background: var(--primary);
+        }
+    }
+}
+
+
+
+// Card degli eventi
+.event-card {
+    background: var(--background);
+    color: var(--text);
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(255, 108, 189, 0.5);
+    }
+
+    .card-img-top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        object-fit: cover;
+        max-height: 200px; 
+    }
+
+    .card-body {
+        flex-grow: 1; 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-footer {
+        text-align: center;
+        margin-top: auto; 
+    }
+
+    .badge {
+        background: var(--secondary);
+        color: var(--background);
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        border: none;
+
+        &:hover {
+            background: var(--accent);
+        }
+    }
+
+    .btn-secondary {
+        background: var(--secondary);
+        border: none;
+
+        &:hover {
+            background: var(--primary);
+        }
+    }
+}
+
+
+
+// Modali
+.modal-content {
+    background: var(--background);
+    color: var(--text);
+    border-radius: 10px;
+
+    .modal-header {
+        border-bottom: 1px solid var(--primary);
+    }
+
+    .modal-footer {
+        border-top: 1px solid var(--primary);
+    }
+
+    .btn-success {
+        background: var(--primary);
+        border: none;
+
+        &:hover {
+            background: var(--accent);
+        }
+    }
+
+    .btn-secondary {
+        background: var(--secondary);
+        border: none;
+
+        &:hover {
+            background: var(--primary);
+        }
+    }
+}
+
+ // Pulsanti generici
+ .button-style {
+    background: var(--primary);
+    color: var(--text);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+
+    &:hover {
+        background: var(--accent);
+        transform: scale(1.05);
+    }
+}
+
+
+
+.event-card {
+    background: var(--background);
+    color: var(--text);
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(255, 108, 189, 0.5);
+    }
+
+    .card-img-top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        object-fit: cover;
+        max-height: 200px; 
+    }
+
+    .card-body {
+        flex-grow: 1; 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-footer {
+        text-align: center;
+        margin-top: auto; 
+    }
+
+    .badge {
+        background: var(--secondary);
+        color: var(--background);
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        border: none;
+
+        &:hover {
+            background: var(--accent);
+        }
+    }
+
+    .btn-secondary {
+        background: var(--secondary);
+        border: none;
+
+        &:hover {
+            background: var(--primary);
+        }
+    }
+
+    //profiloutente
+   
+}
