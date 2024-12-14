@@ -68,7 +68,7 @@ Segui questi passaggi per mettere in piedi il progetto in locale:
 ---
 
 ## 🔗 **Link Utili**
-- [Repository Backend](https://github.com/gabrielemarchione/appalermo))
+- [Repository Backend](https://github.com/gabrielemarchione/appalermo)
 
 ## 🔸 **Autore**
 Sviluppata con ❤️ da:
