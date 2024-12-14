@@ -6,9 +6,9 @@ import { Container, Nav, Tab } from "react-bootstrap";
 const AdminPanel = () => {
     return (
         <Container className="mt-5">
-            <h1>Pannello Amministrativo</h1>
+            <h1>Pannello Admin</h1>
             <Tab.Container defaultActiveKey="eventi">
-                <Nav variant="tabs" className="mb-3">
+                <Nav variant="tabs" className="mb-3 admin-panel-nav d-flex gap-2" >
                     <Nav.Item>
                         <Nav.Link eventKey="eventi">Gestione Eventi</Nav.Link>
                     </Nav.Item>

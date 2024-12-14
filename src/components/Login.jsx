@@ -34,7 +34,6 @@ const Login = () => {
             
             dispatch(setToken(token));
 
-            alert("Login avvenuto con successo!");
             navigate("/home"); 
         } catch (error) {
             setError(error.message);
@@ -74,20 +73,22 @@ const Login = () => {
                             />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit" className="mt-4 w-100">
+                        <Button variant="primary" type="submit" className="mt-4 w-100 btn-modifica">
                             Accedi
                         </Button>
                     </Form>
 
-                    <p className="text-center mt-3">
+                    <p className="text-center mt-5">
                         Non sei registrato? 
-                        <Button variant="link" onClick={handleNavigateToRegister} className="p-0">
-                            Clicca qui
-                        </Button>
+                        <hr />
+                        <Button variant="link" onClick={handleNavigateToRegister} className="p-0 me-2 align-baseline">
+                            Clicca qui 
+                        </Button> 
                         per registrarti.
                     </p>
                 </Col>
             </Row>
+            
         </Container>
     );
 };

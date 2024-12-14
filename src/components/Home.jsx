@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { popolaEventi } from "../redux/actions/index";
 import { Card, Container, Row, Col, Button, Modal, Form, Badge, Carousel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import RiquadroStatistiche from "./RiquadroStatistiche";
+import RecensioniStatiche from "./RecensioniStatiche";
+import Filtro from "./Filtro"
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -10,16 +13,36 @@ const Home = () => {
     const nome = useSelector((state) => state.token.nome);
     const token = useSelector((state) => state.token.token);
     const navigate = useNavigate();
+    
+    const [caroselloEventi, setCaroselloEventi] = useState([]);
 
     const [showPrenotazione, setShowPrenotazione] = useState(false);
-    const [showDettagli, setShowDettagli] = useState(false);
+    const [showDettagli, setShowDettagli] = useState(false); 
     const [eventoSelezionato, setEventoSelezionato] = useState(null);
     const [postiPrenotati, setPostiPrenotati] = useState(1);
-//fetchEventi
-    useEffect(() => {
-        const fetchEventi = async () => {
+    const [filters, setFilters] = useState({});
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(10);
+    const [sortBy, setSortBy] = useState("data");
+
+    //fetchEventi + filtro
+  
+        const fetchEventi = useCallback(async () => {
             try {
-                const response = await fetch("http://localhost:3001/evento", {
+                const params = new URLSearchParams();
+
+                
+                if (filters.titolo) params.append("titolo", filters.titolo);
+                if (filters.data) params.append("data", filters.data);
+                if (filters.categoriaEvento) params.append("categoriaEvento", filters.categoriaEvento);
+                if (filters.costo) params.append("costo", filters.costo);
+
+               
+                params.append("page", page);
+                params.append("size", size);
+                params.append("sortBy", sortBy);
+
+                const response = await fetch(`http://localhost:3001/evento?${params.toString()}`, {
                     method: "GET",
                     headers: { "Content-Type": "application/json" },
                 });
@@ -29,14 +52,19 @@ const Home = () => {
                 }
 
                 const data = await response.json();
-                dispatch(popolaEventi(data.content));
+                dispatch(popolaEventi(data.content)); 
             } catch (error) {
                 console.error("Errore nel recupero degli eventi:", error.message);
             }
-        };
+        },[filters, page, size, sortBy, dispatch]);
 
-        fetchEventi();
-    }, [dispatch]);
+       
+        useEffect(() => {
+            fetchEventi();
+        }, [fetchEventi]);
+
+        
+    
 
     const handlePrenotazione = async () => {
         if (!eventoSelezionato) return;
@@ -60,7 +88,7 @@ const Home = () => {
             });
 
             if (!response.ok) {
-                throw new Error("Errore durante la prenotazione");
+                throw new Error("l'organizzatore non puà fare una prenotazione per il suo evento");
             }
 
             // aggiorna senza necessità di fetch
@@ -108,7 +136,29 @@ const Home = () => {
         setPostiPrenotati(1);
     };
 
-   
+    useEffect(() => {
+        const fetchCaroselloEventi = async () => {
+            try {
+                const response = await fetch("http://localhost:3001/evento/carosello", {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" },
+                });
+    
+                if (!response.ok) {
+                    throw new Error("Errore nel recupero degli eventi del carosello");
+                }
+    
+                const data = await response.json();
+                setCaroselloEventi(data); 
+            } catch (error) {
+                console.error("Errore nel caricamento del carosello:", error.message);
+            }
+        };
+    
+        fetchCaroselloEventi();
+    }, []);
+    
+
 
     return (
         <Container className="mt-4">
@@ -117,18 +167,14 @@ const Home = () => {
                 <h1 className="display-4">Benvenuto {nome}!</h1>
                 <p className="lead">Esplora gli eventi più interessanti di Palermo e provincia.</p>
             </div>
-
+            <hr />
             {/* Carosello */}
 
-            {eventi && eventi.length > 0 && (
+            {caroselloEventi && caroselloEventi.length > 0 ? (
                 <div className="carousel-container w-80 mx-auto">
-                    <Carousel
-                        className="mb-5"
-                        interval={5000} // Intervallo globale in millisecondi
-                    >
-                        {eventi.slice(0, 3).map((evento) => ( 
-                            
-                            <Carousel.Item key={evento.eventoId}>
+                    <Carousel  className="mb-5"interval={4000} >
+                        {caroselloEventi.map((evento) => (
+                              <Carousel.Item key={evento.eventoId}>
                                 <img
                                     className="d-block w-100"
                                     src={evento.immagine || "https://via.placeholder.com/800x400"}
@@ -139,13 +185,13 @@ const Home = () => {
                                     <div className="d-flex justify-content-end">
                                         <Button
                                             variant="primary"
-                                            className="me-2 button-style"
+                                            className="me-2 button-style btn-prenota"
                                             onClick={() => handleShowPrenotazione(evento)}
                                         >
                                             Prenota
                                         </Button>
                                         <Button
-                                        className="text-dark "
+                                            className="text-dark btn-dettagli"
                                             variant="secondary"
                                             onClick={() => handleShowDettagli(evento)}
                                         >
@@ -155,11 +201,19 @@ const Home = () => {
                                 </Carousel.Caption>
                             </Carousel.Item>
                         ))}
-                        
                     </Carousel>
                 </div>
-            )}
+           ) : (
+            <p className="text-center">Nessun evento disponibile per il carosello.</p>
+        )}
+            <hr />
+            {/* Filtro */}
+            <Filtro onApplyFilters={(newFilters) => {
 
+                    setFilters(newFilters); 
+                    setPage(0); 
+                }}
+            />
 
             {/* Card eventi */}
             {!eventi || eventi.length === 0 ? (
@@ -167,9 +221,10 @@ const Home = () => {
             ) : (
                 <Row>
                     {eventi.map((evento) => (
-                        <Col key={evento.eventoId} md={4} className="mb-4">
+                        <Col key={evento.eventoId} xs={6} md={4} className="mb-4">
                             <Card className="event-card">
                                 <Card.Img
+                                    className="event-card-img"
                                     variant="top"
                                     src={evento.immagine || "https://via.placeholder.com/300x200"}
                                 />
@@ -195,12 +250,13 @@ const Home = () => {
                                     </Card.Text>
                                     <Button
                                         variant="secondary"
-                                        className="text-black mb-1"
+                                        className="text-black mb-1 btn-dettagli"
                                         onClick={() => handleShowDettagli(evento)}
                                     >
                                         Dettagli Evento
                                     </Button>
                                     <Button
+                                    className="btn-prenota"
                                         variant="primary"
                                         onClick={() => handleShowPrenotazione(evento)}
                                     >
@@ -212,7 +268,10 @@ const Home = () => {
                     ))}
                 </Row>
             )}
-
+            <hr />
+            <RiquadroStatistiche />
+            <hr />
+            <RecensioniStatiche />
             {/* Modal Dettagli Evento */}
             <Modal show={showDettagli} onHide={handleCloseDettagli}>
                 <Modal.Header closeButton>

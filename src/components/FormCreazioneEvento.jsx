@@ -158,12 +158,13 @@ const FormCreazioneEvento = () => {
   };
 
   return (
+    <div className="form-creazione-evento">
     <Container>
       <Row className="justify-content-center mt-4">
         <Col md={8}>
           <Card className="shadow-lg">
-            <Card.Header className="text-center bg-primary text-white">
-              <h4>Crea un Nuovo Evento</h4>
+            <Card.Header className="text-center mb-2">
+              <h4>CREA IL TUO EVENTO</h4>
             </Card.Header>
             <Card.Body>
               <Form onSubmit={handleSubmit}>
@@ -235,7 +236,7 @@ const FormCreazioneEvento = () => {
                 <Form.Group controlId="isFree" className="mb-3">
                   <Form.Check
                     type="checkbox"
-                    label="Gratis"
+                    label="È gratis?"
                     checked={isGratis}
                     onChange={handleGratis}
                   />
@@ -282,19 +283,21 @@ const FormCreazioneEvento = () => {
                       </option>))}
                   </Form.Control>
                   <Form.Control.Feedback type="invalid">{errors.categoriaEvento}</Form.Control.Feedback>
+                  {!categoriaEvento && <p className="text-dark mt-2 mb-5">Seleziona una categoria per generare un'immagine</p>}
                 </Form.Group>
-                <Form.Group controlId="randomImage" className="mb-3">
-                  <Form.Label>Immagine Evento</Form.Label>
-                  <div className="mb-3">
+                <Form.Group controlId="randomImage" className="mb-1">
+                  <Form.Label>Immagine Evento:</Form.Label>
+                  <div className="mb-4">
                     {randomImage ? (
                       <img src={randomImage} alt="Immagine Evento" className="img-fluid" />
                     ) : (
                       <p>Nessuna immagine selezionata</p>
                     )}
                   </div>
-                  <Button variant="secondary" onClick={fetchRandomImage} className="mb-3">
+                  <Button variant="secondary" onClick={fetchRandomImage} className="mb-3 btn-modifica"  disabled={!categoriaEvento}>
                     Genera Immagine Casuale
                   </Button>
+                  
                 </Form.Group>
                 <Form.Group controlId="termsAccepted" className="mb-3">
                   <Form.Check
@@ -305,7 +308,7 @@ const FormCreazioneEvento = () => {
                   />
                 </Form.Group>
 
-                <Button variant="success" type="submit" className="w-100 mt-3" disabled={!termsAccepted}>
+                <Button variant="success" type="submit" className="w-100 mt-3 btn-modifica" disabled={!termsAccepted}>
                   Crea Evento
                 </Button>
               </Form>
@@ -314,6 +317,7 @@ const FormCreazioneEvento = () => {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 };
 

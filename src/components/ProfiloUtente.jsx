@@ -106,51 +106,51 @@ const ProfiloUtente = () => {
 
   const handleChangeFoto = async () => {
     if (!foto) {
-        setError("Nessuna foto selezionata.");
-        return;
+      setError("Nessuna foto selezionata.");
+      return;
     }
 
     try {
-        setLoading(true);
-        const formData = new FormData();
-        formData.append("foto", foto);
+      setLoading(true);
+      const formData = new FormData();
+      formData.append("foto", foto);
 
-        // aggiorna la foto profilo
-        const response = await fetch("http://localhost:3001/utente/me/avatar", {
-            method: "PATCH",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            body: formData,
-        });
+      // aggiorna la foto profilo
+      const response = await fetch("http://localhost:3001/utente/me/avatar", {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
 
-        if (!response.ok) throw new Error("Errore durante la modifica della foto profilo.");
+      if (!response.ok) throw new Error("Errore durante la modifica della foto profilo.");
 
-        //recupera il profilo aggiornato
-        const profileResponse = await fetch("http://localhost:3001/utente/me", {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` },
-        });
+      //recupera il profilo aggiornato
+      const profileResponse = await fetch("http://localhost:3001/utente/me", {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-        if (!profileResponse.ok) throw new Error("Errore nel caricamento del profilo aggiornato.");
+      if (!profileResponse.ok) throw new Error("Errore nel caricamento del profilo aggiornato.");
 
-        const updatedProfile = await profileResponse.json();
-        setUtente(updatedProfile); // profilo aggiornato
+      const updatedProfile = await profileResponse.json();
+      setUtente(updatedProfile); // profilo aggiornato
 
-        setSuccess(true);
-        setModificaFoto(false);
-        setFoto(null);
+      setSuccess(true);
+      setModificaFoto(false);
+      setFoto(null);
     } catch (err) {
-        setError(err.message);
+      setError(err.message);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
 
   if (loading) return <Spinner animation="border" />;
 
   return (
-    
+
     <div className="foto-profilo-container container d-flex flex-column align-items-center py-5">
       <h1>Profilo Utente</h1>
       {error && <Alert variant="danger">{error}</Alert>}
@@ -163,15 +163,18 @@ const ProfiloUtente = () => {
           className="mb-3"
           style={{ width: "150px", height: "150px", borderRadius: "50%" }}
         />
-        {!modificaFoto && (
-          <Button
-            variant="secondary"
-            onClick={() => setModificaFoto(true)}
-            className="mb-3"
-          >
-            Modifica Foto Profilo
-          </Button>
-        )}
+        <div>
+          {!modificaFoto && (
+            <Button
+              variant="secondary"
+              
+              onClick={() => setModificaFoto(true)}
+              className="btn-modifica"
+            >
+              Modifica Foto Profilo
+            </Button>
+          )}
+        </div>
       </div>
 
       {modificaFoto && (
@@ -179,25 +182,27 @@ const ProfiloUtente = () => {
           <Form.Group controlId="fotoProfilo">
             <Form.Label>Carica Nuova Foto</Form.Label>
             <Form.Control
+            className=""
               type="file"
               accept="image/*"
               onChange={(e) => setFoto(e.target.files[0])}
             />
           </Form.Group>
-
-          <Button variant="primary" onClick={handleChangeFoto}>
-            Salva Foto
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setModificaFoto(false);
-              setFoto(null);
-            }}
-            className="mt-3"
-          >
-            Annulla
-          </Button>
+          <div className="button-group mt-3">
+            <Button className="btn-salva" variant="primary" onClick={handleChangeFoto}>
+              Salva Foto
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                setModificaFoto(false);
+                setFoto(null);
+              }}
+            
+            >
+              Annulla
+            </Button>
+          </div>
         </Form>
       )}
 
@@ -230,28 +235,30 @@ const ProfiloUtente = () => {
               disabled={!modifica}
             />
           </Form.Group>
+          <div className="button-group mt-3">
+            {modifica ? (
+              <Button className="btn-salva" variant="primary" onClick={handleSave}>
+                Salva
+              </Button>
+            ) : (
+              <Button className="btn-modifica" variant="warning" onClick={() => setModifica(true)}>
+                Modifica
+              </Button>
+            )}
 
-          {modifica ? (
-            <Button variant="primary" onClick={handleSave}>
-              Salva
-            </Button>
-          ) : (
-            <Button variant="warning" onClick={() => setModifica(true)}>
-              Modifica
-            </Button>
-          )}
+            <Button
+              variant="secondary"
+              className="btn-modifica"
+              onClick={() => {
+                setModificaPassword(true);
+                setSuccess(false);
+                setError(null);
+              }}
 
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setModificaPassword(true);
-              setSuccess(false);
-              setError(null);
-            }}
-            className="mt-3"
-          >
-            Modifica Password
-          </Button>
+            >
+              Modifica Password
+            </Button>
+          </div>
         </Form>
       )}
 
@@ -281,23 +288,25 @@ const ProfiloUtente = () => {
               onChange={(e) => setPasswords({ ...passwords, confirmNewPassword: e.target.value })}
             />
           </Form.Group>
-
-          <Button variant="primary" onClick={handleChangePassword}>
-            Salva Nuova Password
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setModificaPassword(false);
-              setPasswords({ currentPassword: "", newPassword: "", confirmNewPassword: "" });
-              setError(null);
-              setSuccess(false);
-            }}
-            className="mt-3"
-          >
-            Annulla
-          </Button>
+          <div className="button-group mt-3">
+            <Button className="btn-salva" variant="primary" onClick={handleChangePassword}>
+              Salva Nuova Password
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                setModificaPassword(false);
+                setPasswords({ currentPassword: "", newPassword: "", confirmNewPassword: "" });
+                setError(null);
+                setSuccess(false);
+              }}
+              
+            >
+              Annulla
+            </Button>
+          </div>
         </Form>
+
       )}
     </div>
   );

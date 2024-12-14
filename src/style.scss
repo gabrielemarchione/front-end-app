@@ -5,7 +5,6 @@
     --primary: #ff6cbd;
     --secondary: #ffc6e0;
     --accent: #ff6cbd;
-    --gold: #ffd700;
 }
 
 // Reset generali
@@ -17,7 +16,7 @@
 
 // Corpo
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: var(--background);
     color: var(--text);
     line-height: 1.6;
@@ -26,21 +25,22 @@ body {
 
 //navbar
 .navbar {
-    background: #2b2b2b; // Sfondo rosa
-    color: var(--text); // Testo chiaro
+    background: #2b2b2b; 
+    color: var(--text); 
 
     .navbar-brand,
     .nav-link {
-        color: var(--text); // Colore del testo per i link
+        color: var(--text); 
         transition: color 0.3s;
 
         &:hover {
-            color: var(--secondary); // Cambia colore al passaggio del mouse
+            color: var(--secondary); 
         }
     }
 
     .navbar-toggler {
         border-color: var(--secondary);
+
         &:focus {
             outline: none;
             box-shadow: 0 0 5px var(--accent);
@@ -50,7 +50,7 @@ body {
 
 
 
-// Hero Section
+// Hero section
 .hero-section {
     background: var(--primary);
     color: var(--background);
@@ -102,14 +102,8 @@ body {
         border-bottom-left-radius: 20px; // Applica la stessa regola all'immagine per evitare tagli
         border-bottom-right-radius: 20px;
     }
-    .btn-secondary {
-        background: var(--secondary);
-        border: none;
 
-        &:hover {
-            background: var(--primary);
-        }
-    }
+    
 }
 
 
@@ -124,7 +118,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%; 
+    height: 100%;
 
     &:hover {
         transform: scale(1.05);
@@ -135,11 +129,11 @@ body {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         object-fit: cover;
-        max-height: 200px; 
+        max-height: 200px;
     }
 
     .card-body {
-        flex-grow: 1; 
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -147,7 +141,7 @@ body {
 
     .card-footer {
         text-align: center;
-        margin-top: auto; 
+        margin-top: auto;
     }
 
     .badge {
@@ -164,14 +158,7 @@ body {
         }
     }
 
-    .btn-secondary {
-        background: var(--secondary);
-        border: none;
-
-        &:hover {
-            background: var(--primary);
-        }
-    }
+   
 }
 
 
@@ -209,8 +196,8 @@ body {
     }
 }
 
- // Pulsanti generici
- .button-style {
+
+.button-style {
     background: var(--primary);
     color: var(--text);
     border: none;
@@ -235,7 +222,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%; 
+    height: 100%;
 
     &:hover {
         transform: scale(1.05);
@@ -246,11 +233,11 @@ body {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         object-fit: cover;
-        max-height: 200px; 
+        max-height: 200px;
     }
 
     .card-body {
-        flex-grow: 1; 
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -258,7 +245,7 @@ body {
 
     .card-footer {
         text-align: center;
-        margin-top: auto; 
+        margin-top: auto;
     }
 
     .badge {
@@ -275,15 +262,403 @@ body {
         }
     }
 
-    .btn-secondary {
-        background: var(--secondary);
-        border: none;
-
-        &:hover {
-            background: var(--primary);
-        }
-    }
-
-    //profiloutente
+    
    
+}
+.event-card-img {
+    height: 200px; 
+    object-fit: cover; 
+    width: 100%; 
+  }
+  
+//profiloutente
+
+.btn-modifica {
+    background-color: var(--secondary);
+    color: var(--background);
+    border: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-modifica:hover {
+    background-color: var(--accent);
+    color: var(--text);
+    transform: scale(1.05);
+}
+
+.btn-modifica:active {
+    background-color: var(--primary);
+    transform: scale(1);
+}
+
+.btn-salva {
+    background-color: var(--secondary);
+    color: var(--background);
+    border: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-salva:hover {
+    background-color: var(--accent);
+    color: var(--text);
+    transform: scale(1.05);
+}
+
+.btn-salva:active {
+    background-color: var(--primary);
+    transform: scale(1);
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.button-group .btn {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+//tabelle
+.table-responsive{
+    border-radius: 10px;
+}
+  
+  .table td {
+    padding: 0; 
+    margin: 0; 
+    vertical-align: middle; 
+    border: none; 
+    height: 52px; 
+    text-align: center;
+  }
+
+.button-group-td {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 0.5rem; 
+    padding: 0; 
+    border: none; 
+    height: 100%;
+    
+  }
+
+ //card stats
+ .statistiche-card {
+    background-color: var(--secondary);
+    color: black; 
+    border: none; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+
+//bottone filtro
+.btn-filtro {
+    color: #101010; 
+    font-weight: bold; 
+    border: none; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+}
+
+.btn-filtro:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.btn-filtro:focus {
+    outline: none; 
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); 
+}
+
+
+.sticky-navbar {
+    position: sticky;
+    top: 0; 
+    z-index: 1030; 
+    background-color: var(--background); 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+    border-bottom: 2px solid var(--primary); 
+    
+}
+.navbar .nav-link {
+    color: var(--text); 
+    font-weight: bold; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary); 
+}
+
+.navbar .nav-link:active {
+    color: var(--accent); 
+}
+
+// Contenitore del filtro 
+.filtro-container {
+    background-color: var(--background); 
+    color: var(--text); 
+    border-radius: 8px; 
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+// Input e select 
+.filtro-container .form-control {
+    background-color: var(--secondary); /* Sfondo dei campi */
+    color: black; 
+    border: 1px solid var(--primary); 
+    border-radius: 6px;
+}
+
+.filtro-container .form-control:focus {
+    border-color: var(--accent); 
+    box-shadow: 0 0 5px var(--accent); 
+    outline: none;
+}
+
+// Pulsanti 
+.btn-filtro {
+    background-color: var(--primary); 
+    color: var(--text); 
+    font-weight: bold;
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-filtro:hover {
+    background-color: var(--accent); 
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-filtro:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+// Etichette 
+.filtro-container .form-label {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+// colore e stile del placeholder 
+::placeholder {
+    color: black; 
+    font-weight: bold; 
+    opacity: 1; 
+}
+
+//btn prenotazione evento 
+.btn-prenota:hover {
+    color: #101010; 
+    font-weight: bold; 
+    border: none; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; scale: (1.05); 
+}
+
+// btn dettagli evento 
+
+.btn-dettagli{
+    background-color: var(--secondary);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+// Pulsante "Dettagli Evento" 
+.btn-dettagli:hover {
+    font-weight: bold; 
+    background-color: var(--secondary);
+    transform: scale(1.05) !important; 
+   
+}
+
+//hambuger nav 
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: none; // Rimuove l'icona SVG predefinita 
+    background-color: var(--primary);
+    border-radius: 2px;
+    position: relative;
+    width: 24px;
+    height: 2px;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: "";
+    background-color: var(--primary);
+    border-radius: 2px;
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon::before {
+    top: -8px;
+}
+
+.navbar-toggler-icon::after {
+    top: 8px;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon,
+.navbar-toggler:focus .navbar-toggler-icon {
+    background-color: var(--primary);
+}
+
+.navbar-toggler:hover .navbar-toggler-icon::before,
+.navbar-toggler:focus .navbar-toggler-icon::before {
+    background-color: var(--primary);
+}
+
+.navbar-toggler:hover .navbar-toggler-icon::after,
+.navbar-toggler:focus .navbar-toggler-icon::after {
+    background-color: var(--primary);
+}
+
+//form evento
+.form-creazione-evento .form-control {
+    border: 2px solid var(--background); 
+    background-color: var(--secondary); //campo nel form
+    color: var(--background);  
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-creazione-evento .form-control:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 5px var(--secondary);
+}
+
+.form-creazione-evento .card {
+    border: none;
+    border-radius: 10px;
+    background-color: whitesmoke; //corpo del form
+    box-shadow: 0 4px 10px rgba(255, 108, 189, 0.3); 
+}
+
+.form-creazione-evento button[type="submit"] {
+    background-color: var(--background);
+    color: white;
+    border: 2px solid var(--background);
+    transition: all 0.3s ease-in-out;
+}
+
+.form-creazione-evento button[type="submit"]:hover {
+    background-color: var(--primary);
+    border-color: var(--secondary);
+    color: var(--background);
+}
+
+.form-creazione-evento .card-header {
+    border-bottom: 4px solid var(--primary); 
+    background-color: var(--background); 
+    color:var(--text); 
+    font-weight: bold; 
+    text-align: center; 
+    border-radius: 0; 
+    padding: 1rem; 
+
+}
+
+
+//BTN FORM generazione foto 
+
+.form-creazione-evento .btn-modifica {
+    background-color: var(--background);
+    color: white;
+    border: 2px solid var(--background);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer; 
+}
+
+
+.form-creazione-evento .btn-modifica:hover {
+    background-color: var(--primary);
+    border-color: var(--secondary);
+    color: var(--background);
+}
+
+
+.form-creazione-evento .btn-modifica:disabled {
+    background-color: #d3d3d3; 
+    border-color: #d3d3d3;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}
+
+//PANNELLO ADMIN 
+
+.admin-panel-nav .nav-item .nav-link {
+    background-color: var(--secondary); 
+    color: var(--background); 
+    border-radius: 5px; 
+    padding: 0.5rem 1rem; 
+    transition: all 0.3s ease-in-out; 
+    border: none;
+    
+}
+
+
+.admin-panel-nav .nav-item .nav-link.active {
+    background-color: var(--primary); 
+    color: var(--background); 
+    font-weight: bold; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+
+.admin-panel-nav .nav-item .nav-link:hover {
+    background-color: var(--primary); 
+    color: var(--background); 
+}
+
+.btn-cancella {
+    background-color: #F44336;
+    color: var(--background);
+    border: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cancella:hover {
+    background-color: #D32F2F;
+    color: var(--text);
+    transform: scale(1.05);
+}
+
+.btn-cancella:active {
+    background-color: var(--primary);
+    transform: scale(1);
+}
+
+
+.footerancorato{
+    margin-top: 8.1rem !important;
 }

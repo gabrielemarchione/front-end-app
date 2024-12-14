@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const MyFooter = () => {
   return (
-    <footer className="bg-dark text-white py-4 mt-5">
+    <footer className="bg-dark text-white py-4 mt-5 footerancorato">
       <Container>
         <Row>
           <Col md={4} className="mb-3">
@@ -15,8 +15,8 @@ const MyFooter = () => {
           </Col>
           <Col md={4} className="mb-3">
             <h5>Contatti</h5>
-            <p>Email: gabrielemarchione@eventi.com</p>
-            <p>Telefono: +39 0123 456 789</p>
+            <p>Email: gabrielemarchione@appalermo.com</p>
+            <p>Telefono: +39 091 333 333</p>
           </Col>
         </Row>
         <Row>

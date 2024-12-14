@@ -126,6 +126,7 @@ const MyEvents = () => {
         <Alert variant="info">Non hai creato eventi.</Alert>
       )}
       {!loading && !error && events.length > 0 && (
+        <div className="table-responsive table-stondata mb-3">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -149,15 +150,17 @@ const MyEvents = () => {
                 <td>{event.data}</td>
                 <td>{event.postiDisponibili}</td>
                 {isAdmin && <td>{event.organizzatore? `${event.organizzatore.nome} ${event.organizzatore.cognome}` : "Non disponibile"}  </td> }
-                <td>
+                <td  className="button-group-td">
                   <Button
+                  className=" btn-modifica"
                     variant="warning"
                     onClick={() => setSelectedEvent(event)}
-                    className="me-2"
+                    
                   >
                     Modifica
                   </Button>
                   <Button
+                  className="btn-cancella"
                     variant="danger"
                     onClick={() => handleShowConfirmDelete(event)}
                   >
@@ -168,6 +171,7 @@ const MyEvents = () => {
             ))}
           </tbody>
         </Table>
+        </div>
       )}
 
       {/* Modal per confermare la cancellazione */}
@@ -217,19 +221,20 @@ const MyEvents = () => {
               />
             </Form.Group>
             <Button
+            className="btn-modifica me-2 mt-2"
               variant="primary"
               onClick={() => handleSave(selectedEvent)}
             >
               Salva
             </Button>
-            <Button variant="secondary" onClick={() => setSelectedEvent(null)}>
+            <Button variant="secondary" className="mt-2" onClick={() => setSelectedEvent(null)}>
               Annulla
             </Button>
           </Form>
         </div>
       )}
 
-      <Button variant="primary" onClick={fetchEvents}>
+      <Button className="mt-4 btn-modifica" variant="primary" onClick={fetchEvents}>
         Aggiorna
       </Button>
     </div>

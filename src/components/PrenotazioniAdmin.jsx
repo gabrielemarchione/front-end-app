@@ -71,7 +71,8 @@ const PrenotazioniAdmin = () => {
 
     return (
         <div>
-            <h2>Gestione Prenotazioni</h2>
+            <h2>Prenotazioni</h2>
+            <div className="table-responsive table-stondata">
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -101,6 +102,7 @@ const PrenotazioniAdmin = () => {
                     ))}
                 </tbody>
             </Table>
+            </div>
         </div>
     );
 };

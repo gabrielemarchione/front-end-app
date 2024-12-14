@@ -15,35 +15,35 @@ const OurNavbar = () => {
     };
 
     return (
-        <Navbar expand="lg" className="navbar bg-3">
+        <Navbar expand="lg" className="navbar bg-3 sticky-navbar">
             <Container>
-                <Link className="text-white navbar-brand" to="/home">Appalermo</Link>
+                <Link className="navbar-brand" to="/home">Appalermo</Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="w-100 justify-content-evenly">
                         {ruoli.some((ruolo) => ["ADMIN", "ORGANIZZATORE", "USER"].includes(ruolo)) && (
-                            <Link to="/profilo" className="nav-link text-white">Il mio profilo</Link>
+                            <Link to="/profilo" className="nav-link ">Il mio profilo</Link>
                         )}
                         {ruoli.some((ruolo) => ["ADMIN", "ORGANIZZATORE"].includes(ruolo)) && (
-                            <Link to="/evento" className="nav-link text-white">Crea evento</Link>
+                            <Link to="/evento" className="nav-link ">Crea evento</Link>
                         )}
                         {ruoli.some((ruolo) => ["ORGANIZZATORE"].includes(ruolo)) && (
-                            <Link to="/myevents" className="nav-link text-white">I Miei Eventi</Link>
+                            <Link to="/myevents" className="nav-link ">I Miei Eventi</Link>
                         )}
                         {ruoli.some((ruolo) => ["ORGANIZZATORE", "USER"].includes(ruolo)) && (
-                            <Link to="/mybookings" className="nav-link text-white">Prenotazioni</Link>
+                            <Link to="/mybookings" className="nav-link ">Prenotazioni</Link>
                         )}
                         {ruoli.some((ruolo) => ["ADMIN"].includes(ruolo)) && (
-                            <Link to="/admin" className="nav-link text-white">Pannello Admin</Link>
+                            <Link to="/admin" className="nav-link ">Pannello Admin</Link>
                         )}
                     </Nav>
                     <Nav className="ms-auto">
                         {token ? (
-                            <span className="nav-link text-white" style={{ cursor: "pointer" }} onClick={handleLogout}>
+                            <span className="nav-link " style={{ cursor: "pointer" }} onClick={handleLogout}>
                                 Logout
                             </span>
                         ) : (
-                            <Link to="/login" className="nav-link text-white">Login/Registrati</Link>
+                            <Link to="/login" className="nav-link ">Login /Registrati</Link>
                         )}
                     </Nav>
                 </Navbar.Collapse>
