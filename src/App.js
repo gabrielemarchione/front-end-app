@@ -12,11 +12,11 @@ import  LeMiePrenotazioni from './components/LeMiePrenotazioni'
 import RegistrazioneNuovoUtente from './components/RegistrazioneNuovoUtente';
 import PannelloAdmin from './components/PannelloAdmin'
 import MyFooter from './components/MyFooter';
-
+import BottoneSu from './components/BottoneSu'
 function App() {
   return (
     <BrowserRouter> 
-    <div>
+    <div className="app-container d-flex flex-column min-vh-100">
       <OurNavbar/>
       <Routes>
         <Route path='/*' element={<Home />} />
@@ -29,6 +29,7 @@ function App() {
         <Route path = "/admin" element= {<PannelloAdmin/>}  />
       </Routes>
       <MyFooter/>
+      <BottoneSu/>
       </div>
     </BrowserRouter>
 

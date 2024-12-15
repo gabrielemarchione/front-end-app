@@ -208,6 +208,15 @@ const ProfiloUtente = () => {
 
       {!modificaPassword && (
         <Form onSubmit={(e) => e.preventDefault()}>
+          <Form.Group controlId="username">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              value={utente.username || ""}
+              onChange={(e) => setUtente({ ...utente, username: e.target.value })}
+              disabled={!modifica}
+            />
+          </Form.Group>
           <Form.Group controlId="nome">
             <Form.Label>Nome</Form.Label>
             <Form.Control

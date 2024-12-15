@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 
 const reviews = [
   {
@@ -22,23 +22,25 @@ const reviews = [
 const RecensioniStatiche = () => {
   return (
     <Container className="my-5">
-      <h2 className="text-center mb-4">Recensioni degli Utenti</h2>
-      <Row>
+      <div className="text-center mb-4 titoloSezione">
+      <h2 >Feedbacks</h2>
+      </div>
+      <div className="d-flex flex-wrap justify-content-center gap-4">
         {reviews.map((review, index) => (
-          <Col md={4} xs={12} key={index} className="mb-4">
-            <Card className="statistiche-card">
-              <Card.Body>
-                <Card.Title>{review.name}</Card.Title>
-                <Card.Text>{review.comment}</Card.Text>
-                <Card.Text>
-                  <strong>Valutazione:</strong> {review.rating}⭐
-                  
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
+          <Card
+            key={index}
+            className={`flex-grow-1 recensione-card text-center card-${index + 1}`}
+          >
+            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
+              <Card.Title className="fw-bold">{review.name}</Card.Title>
+              <Card.Text className="text-center">{review.comment}</Card.Text>
+              <Card.Text>
+                <strong>Valutazione:</strong> {review.rating}⭐
+              </Card.Text>
+            </Card.Body>
+          </Card>
         ))}
-      </Row>
+      </div>
     </Container>
   );
 };

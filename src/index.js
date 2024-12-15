@@ -6,8 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import {store, persistedStore} from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './style.scss'; // Altri stili personalizzati
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import './style.scss'; 
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
  
 const root = ReactDOM.createRoot(document.getElementById('root'));

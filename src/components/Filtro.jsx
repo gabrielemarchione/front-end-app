@@ -7,10 +7,11 @@ const Filtro = ({ onApplyFilters }) => {
     const [categoriaEvento, setCategoriaEvento] = useState("");
     const [costo, setCosto] = useState("");
     const [open, setOpen] = useState(false);
+    const [organizzatore, setOrganizzatore] = useState("");
 
     const handleFilter = () => {
         console.log("Data inviata: " + data);
-        onApplyFilters({ titolo, data, categoriaEvento, costo });
+        onApplyFilters({ titolo, data, categoriaEvento, costo, organizzatore });
     };
 
     const handleReset = () => {
@@ -18,6 +19,7 @@ const Filtro = ({ onApplyFilters }) => {
         setData("");
         setCategoriaEvento("");
         setCosto("");
+        setOrganizzatore("");
         onApplyFilters({});
     };
 
@@ -39,6 +41,7 @@ const Filtro = ({ onApplyFilters }) => {
                 <div id="filtro-collapse" className="filtro-container">
                     <Form className="p-3 border rounded shadow">
                         <Row className="align-items-end">
+
                             <Col xs={12} md={3} className="mb-2 ">
                                 <Form.Group controlId="titolo">
                                     <Form.Label>Titolo</Form.Label>
@@ -50,7 +53,16 @@ const Filtro = ({ onApplyFilters }) => {
                                     />
                                 </Form.Group>
                             </Col>
-
+                            <Col xs={12} md={3} className="mb-2">
+                                <Form.Group controlId="data">
+                                    <Form.Label>Data</Form.Label>
+                                    <Form.Control
+                                        type="date"
+                                        value={data}
+                                        onChange={(e) => setData(e.target.value)}
+                                    />
+                                </Form.Group>
+                            </Col>
                             <Col xs={12} md={3} className="mb-2">
                                 <Form.Group controlId="categoriaEvento">
                                     <Form.Label>Categoria Evento</Form.Label>
@@ -84,6 +96,7 @@ const Filtro = ({ onApplyFilters }) => {
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
+
                             <Col xs={12} md={3} className="mb-2">
                                 <Form.Group controlId="costo">
                                     <Form.Label>Costo Massimo</Form.Label>
@@ -95,6 +108,19 @@ const Filtro = ({ onApplyFilters }) => {
                                     />
                                 </Form.Group>
                             </Col>
+
+                            <Col xs={12} md={3} className="mb-2 ">
+                                <Form.Group controlId="organizzatore">
+                                    <Form.Label>Organizzatore</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Inserisci organizzatore"
+                                        value={organizzatore}
+                                        onChange={(e) => setOrganizzatore(e.target.value)}
+                                    />
+                                </Form.Group>
+                            </Col>
+
                         </Row>
                         <Row className="justify-content-end mt-3">
                             <Col xs="auto">

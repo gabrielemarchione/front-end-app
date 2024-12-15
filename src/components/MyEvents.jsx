@@ -132,10 +132,11 @@ const MyEvents = () => {
             <tr>
               <th>#</th>
               <th>Titolo</th>
-              <th>Descrizione</th>
               <th>Luogo</th>
-              <th>Data</th>
+              <th>Data e orario</th>
+              <th>Posti Massimi</th>
               <th>Posti Disponibili</th>
+              
               {isAdmin && <th>Organizzatore</th>}
               <th>Azioni</th>
             </tr>
@@ -145,9 +146,9 @@ const MyEvents = () => {
               <tr key={event.eventoId}>
                 <td>{index + 1}</td>
                 <td>{event.titolo}</td>
-                <td>{event.descrizione}</td>
                 <td>{event.luogo}</td>
-                <td>{event.data}</td>
+                <td>{event.orarioInizio}</td>
+                <td>{event.postiMassimi}</td>
                 <td>{event.postiDisponibili}</td>
                 {isAdmin && <td>{event.organizzatore? `${event.organizzatore.nome} ${event.organizzatore.cognome}` : "Non disponibile"}  </td> }
                 <td  className="button-group-td">
