@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# 🎉 **APPALERMO** 🎟️
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Benvenuti nel fantastico mondo di **APPALERMO**! Questa è l'app definitiva per gestire eventi nella tua città. Sia che tu voglia prenotare un evento o organizzarne uno, qui trovi tutto quello di cui hai bisogno! 🌟
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 **Cosa fa l'app?**
+APPALERMO è pensata per rendere la gestione degli eventi cittadini semplice e intuitiva. Ecco cosa puoi fare:
 
-### `npm start`
+- 📅 **Prenotarti** ad eventi e cancellare la prenotazione in caso di imprevisti.
+- 🎤 **Organizzare eventi** personalizzati come organizzatore ufficiale.
+- 📊 Gli **admin** possono fare CRUD completo su eventi e prenotazioni.
+- 🔑 Sistema di **login**, **gestione profilo**, e una dashboard dedicata per ogni ruolo (utente, organizzatore, admin).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🔧 **Tecnologie usate**
+Questa app è costruita usando:
 
-### `npm test`
+### **Frontend**:
+- React ❤️
+- Redux per la gestione dello stato
+- Bootstrap per un design responsive 😍
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **Backend**:
+- Spring Boot ☕
+- PostgreSQL per il database 🏛️
+- Cloudinary per la gestione delle foto profilo utenti
+- Unsplash API per immagini dinamiche sugli eventi
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔍 **Funzionalità principali**
+1. **Prenotazioni**: Gli utenti possono prenotare eventi e gestire facilmente le loro iscrizioni.
+2. **Organizzatori**: Possono creare e modificare eventi con categorie specifiche.
+3. **Admin Panel**: CRUD totale su eventi e prenotazioni.
+4. **Immagini dinamiche**: Foto evento generate automaticamente in base alla categoria (grazie a Unsplash!).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📚 **Setup e Installazione**
+Segui questi passaggi per mettere in piedi il progetto in locale:
 
-### `npm run eject`
+### **Prerequisiti**:
+- Node.js.
+- Java 17+ per il backend.
+- PostgreSQL.
+- IntelliJ IDEA o Eclipse per eseguire il backend 8consigliato IntelliJ IDEA).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Frontend**:
+1. Clona il repository.
+2. Vai nella directory del frontend con `cd front-end-app`.
+3. Installa le dipendenze: `npm install`.
+4. Avvia il progetto: `npm start`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **Backend**:
+1. Clona il repository.
+2. Configura il file `application.properties` con i dettagli del tuo database PostgreSQL.
+3. Apri il progetto con IntelliJ IDEA o Eclipse.
+4. Avvia l'app con: `mvn spring-boot:run`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🔌 **Cose extra cool**
+- **Cloudinary**: Ogni utente può caricare una foto profilo personalizzata.
+- **Unsplash API**: Genera immagini evento automatiche basate sulla categoria scelta!😍
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔗 **Link Utili**
+- [Repository Backend](https://github.com/gabrielemarchione/appalermo)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🔸 **Autore**
+Sviluppata con ❤️ da:
+- **Gabriele Marchione**
+- Email: [gabrielemarchione@gmail.com]
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Se hai domande o vuoi contribuire, non esitare a contattarmi! 🙌
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
