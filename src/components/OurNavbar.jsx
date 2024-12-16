@@ -78,7 +78,7 @@ const OurNavbar = () => {
                     <Nav className="d-lg-none flex-column align-items-end mt-3">
                         {ruoli.some((ruolo) => ["ADMIN", "ORGANIZZATORE", "USER"].includes(ruolo)) && (
                             <Link to="/profilo" className="nav-link text-end">
-                                <i className="fa fa-user me-2"></i> Il mio profilo
+                                <i className="fa fa-user me-2"></i> Profilo
                             </Link>
                         )}
                         {ruoli.some((ruolo) => ["ADMIN", "ORGANIZZATORE"].includes(ruolo)) && (

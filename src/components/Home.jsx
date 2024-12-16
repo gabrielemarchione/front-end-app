@@ -231,7 +231,7 @@ const Home = () => {
                                     alt={evento.titolo}
                                 />
                                 <Carousel.Caption>
-                                    <h3>{evento.titolo}</h3>
+                                    <h3 className="titoloCarosello">{evento.titolo}</h3>
                                     <div className="d-flex justify-content-end">
                                         <Button
                                             variant="primary"
@@ -277,8 +277,8 @@ const Home = () => {
                 <>
                     <Row>
                         {eventi.map((evento) => (
-                            <Col key={evento.eventoId} xs={6} md={6} lg={3} className="mb-4">
-                                <Card className="event-card mb-2">
+                            <Col key={evento.eventoId} xs={12} sm={6} md={6} lg={3} className="mb-4">
+                                <Card className="event-card ">
                                     <Card.Img
                                         className="event-card-img"
                                         variant="top"
@@ -303,7 +303,7 @@ const Home = () => {
                                             <strong>Costo:</strong>{" "}
                                             {evento.costo === 0 ? "Gratis" : `€${evento.costo.toFixed(2)}`}
                                         </Card.Text>
-                                        <Card.Text>
+                                        <Card.Text className="mb-2">
                                             <Badge bg={evento.postiDisponibili < 5 ? "danger" : "success"}>
                                                 {evento.postiDisponibili} posti disponibili
                                             </Badge>

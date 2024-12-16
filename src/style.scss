@@ -116,7 +116,7 @@ body {
     .carousel-caption {
         position: absolute;
         bottom: 20px;
-        background: rgba(0, 0, 0, 0.7); // Sfondo trasparente scuro
+        background: rgba(0, 0, 0, 0.5); // Sfondo trasparente scuro
         color: var(--text);
         padding: 1rem;
         border-radius: 10px;
@@ -160,7 +160,7 @@ body {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         object-fit: cover;
-        max-height: 200px;
+        max-height: 100px;
     }
 
     .card-body {
@@ -893,4 +893,30 @@ body {
   .back-to-top:focus {
     outline: none;
   }
-  
+  .event-card p {
+    margin-bottom: 0; /* Rimuove il margin inferiore */
+}
+
+
+.carousel-caption .h3 {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.card-body .h5{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem; 
+    color: var(--secondary); 
+}
+
+.titoloCarosello {
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 700; 
+    font-size: 1.5rem; 
+    color: var(--secondary); 
+    text-transform: capitalize; 
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+}
