@@ -35,7 +35,7 @@ body {
     .nav-link {
         color: var(--secondary);
         transition: color 0.3s;
-
+font-family: Poppins,sans-serif;
         &:hover {
             color: var(--primary);
         }
@@ -89,13 +89,17 @@ body {
     /* Dimensione grande per il titolo */
     margin-bottom: 1rem;
     /* Spaziatura sotto il titolo */
+    font-family: Poppins, sans-serif;
 }
 
 .hero-content p {
     font-size: 1.2rem;
     /* Dimensione del sottotitolo */
     margin-top: 0;
-    /* Rimuovi margini superflui */
+font-family: Poppins, sans-serif;
+    font-weight: 700;
+
+
 }
 
 
@@ -120,6 +124,8 @@ body {
         color: var(--text);
         padding: 1rem;
         border-radius: 10px;
+
+
     }
 
     .carousel-item img {
@@ -134,8 +140,17 @@ body {
         border-bottom-right-radius: 20px;
     }
 
+    
 
 }
+
+.carousel-container h3 {
+    font-family: 'Poppins', sans-serif; /* Specifica il font */
+    font-weight: 700; /* Grassetto */
+    font-size: 1.5rem; /* Dimensione personalizzabile */
+    color: var(--secondary); /* Adatta il colore se necessario */
+  }
+  
 
 
 
@@ -739,15 +754,19 @@ body {
     color: #000;
 }
 
-
+.titoloeventi  {
+    color: var(--secondary);
+}
 .custom-card-title {
     font-size: 2rem;
     font-weight: bold;
 }
 
+
 .custom-card-text {
     font-size: 1.2rem;
     text-align: center;
+    font-family: Poppins, sans-serif;
 }
 
 // Centrare verticalmente e orizzontalmente il contenuto delle recensioni 
@@ -763,16 +782,20 @@ body {
 
 
 }
-
+strong {
+    font-weight: bolder;
+    font-family: Poppins,sans serif;}
 // Regola generale per il testo 
 .recensione-card .text-center {
     text-align: center;
     margin: 0;
     font-size: larger;
+    font-family: Poppins,sans-serif;
 }
 
 .btn {
-    font-weight: bold;
+    
+    font-family: Poppins,sans-serif;
 }
 
 //footer
@@ -823,7 +846,7 @@ body {
 .keyword {
     font-weight: bold;
     font-size: larger;
-    font-family: 'Roboto Slab', serif;
+    font-family: Poppins, serif;
 
 }
 
@@ -863,60 +886,61 @@ body {
 
 }
 
-.keyword-hero-uno{
+.keyword-hero-uno {
     color: whitesmoke;
 }
 
 .back-to-top {
-    position: fixed; 
-    bottom: 20px; 
-    right: 20px; 
-    background-color: #FF69B4; 
-    color: #FFFFFF; 
-    border: none; 
-    border-radius: 50%; 
-    width: 50px; 
-    height: 50px; 
-    display: flex; 
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #FF69B4;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
-    cursor: pointer; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .back-to-top:hover {
-    background-color: #FF1493; 
+}
+
+.back-to-top:hover {
+    background-color: #FF1493;
     transform: scale(1.1);
-  }
-  
-  .back-to-top:focus {
+}
+
+.back-to-top:focus {
     outline: none;
-  }
-  .event-card p {
-    margin-bottom: 0; /* Rimuove il margin inferiore */
+}
+
+.event-card p {
+    margin-bottom: 0;
+    /* Rimuove il margin inferiore */
 }
 
 
 .carousel-caption .h3 {
-    font-family: 'Lora', serif;
     font-weight: 600;
     font-size: 1.5rem;
     color: #fff;
 }
 
-.card-body .h5{
+.card-body .h5 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 1.5rem; 
-   
+    font-size: 1.5rem;
+
 }
 
 .titoloCarosello {
-    font-family: 'Poppins', sans-serif; 
-    font-weight: 700; 
-    font-size: 1.5rem; 
-    color: var(--secondary); 
-    text-transform: capitalize; 
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--secondary);
+    text-transform: capitalize;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
